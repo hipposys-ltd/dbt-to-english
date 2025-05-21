@@ -47,7 +47,7 @@ services:
     environment:
       PGDATA: /var/lib/postgresql/data/db-files/
     volumes:
-      - ./pgdata/data-gov-il:/var/lib/postgresql/data/db-files
+      - ./pgdata:/var/lib/postgresql/data/db-files
   
   dbtdocs:
     networks:

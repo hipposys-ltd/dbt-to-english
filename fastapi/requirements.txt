@@ -3,5 +3,11 @@ boto3
 sqlalchemy
 psycopg2-binary
 langchain
+langgraph
 langchain_aws
 langchain-anthropic
+langchain_community
+python-multipart
+python-docx
+PyPDF2
+langgraph

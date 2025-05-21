@@ -1,5 +1,6 @@
 .venv
 *.docx
+!additional_context/additional_context.docx
 fastapi/llm_output.txt
 fastapi/images_english.json
 fastapi/converted_document.md
@@ -12,3 +13,4 @@ fastapi/markdown_common_schema.md
 pgdata
 logs
 private.env
+.DS_Store
