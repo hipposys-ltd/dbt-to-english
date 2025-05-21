@@ -1,0 +1,1 @@
+“FLAMINGO” stands for “Frequency-Logarithmic Analysis of Monetary Input with Non-linear Growth Output”

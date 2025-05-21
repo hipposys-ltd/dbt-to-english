@@ -4,7 +4,8 @@ import os
 
 
 class DbtToEnglish:
-    def __init__(self, dbt_manifest, dbt_catalog, node_id, prompt):
+    def __init__(self, dbt_manifest, dbt_catalog,
+                 node_id, prompt, additional_context):
         self._llm = None
         self.dbt_manifest = dbt_manifest
         self.dbt_catalog = dbt_catalog
@@ -13,11 +14,13 @@ class DbtToEnglish:
         self.custom_prompt = prompt
         self.max_level = 2
         self._messages = None
+        self.additional_context = additional_context
 
     @property
     def messages(self):
         self._messages = [
             ('system', self.custom_prompt),
+            ('system', self.additional_context),
         ]
         return self._messages
 
@@ -38,11 +41,15 @@ class DbtToEnglish:
         return self._llm
 
     @staticmethod
-    def upload_dbt_node(node, dbt_manifest, dbt_catalog, prompt):
+    def upload_dbt_node(node, dbt_manifest, dbt_catalog, prompt,
+                        additional_context):
+        additional_context = f'REFERENCE LIBRARY: When encountering unfamiliar terminology, consult this supplementary knowledge base. The text below contains definitions, explanations, and contextual information for specialized terms, acronyms, and domain-specific language that may not be in standard training data. Use these values to explain acronyms and provide additional context to the user, incorporating explanations in your output: {additional_context}'
         return DbtToEnglish(dbt_manifest=dbt_manifest,
                             dbt_catalog=dbt_catalog,
                             node_id=node,
-                            prompt=prompt).get_model_explanation()
+                            prompt=prompt,
+                            additional_context=additional_context)\
+            .get_model_explanation()
 
     @staticmethod
     def get_dict_type_for_manifest(type_name):

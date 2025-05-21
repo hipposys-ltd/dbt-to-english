@@ -5,3 +5,6 @@ psycopg2-binary
 langchain
 langchain_aws
 langchain-anthropic
+python-multipart
+python-docx
+PyPDF2
